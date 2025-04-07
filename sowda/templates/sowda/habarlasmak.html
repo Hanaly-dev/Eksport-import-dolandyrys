@@ -1,0 +1,94 @@
+{% extends 'sowda/index.html' %}
+{% load static %}
+{% block habarlasmak %}
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background" data-aos="fade" style="background-image: url(assets/img/page-title-bg.webp);">
+      <div class="container position-relative">
+        <h1>Habarlaşmak</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="{% url 'index' %}">Esasy</a></li>
+            <li class="current">Habarlaşmak</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+<div class="container" data-aos="fade">
+
+        <div class="row gy-5 gx-lg-5">
+
+          <div class="col-lg-4">
+
+            <div class="info">
+              <h3>Maglumatlar</h3>
+              <p>Hyzmatdaşlyk we soraglaryňyz üçin habarlaşyp bilersiňiz.</p>
+
+              <div class="info-item d-flex">
+                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <div>
+                  <h4>Salgymyz:</h4>
+                  <p>Mary şäheri, Aşgabat köçesi</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h4>Elektron salgymyz:</h4>
+                  <p>agro@onumcilik.com</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex">
+                <i class="bi bi-phone flex-shrink-0"></i>
+                <div>
+                  <h4>Telefon belgimiz:</h4>
+                  <p>+99361758863</p>
+                </div>
+              </div><!-- End Info Item -->
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-8">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Adyňyz" required="">
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Elektron salgyňyz" required="">
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="" required="">
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" placeholder="Message" required=""></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Ýüklenýär..</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Habaryňyz ugradyldy.</div>
+              </div>
+              <div class="text-center"><button type="submit">Ugratmak</button></div>
+            </form>
+          </div><!-- End Contact Form -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+    
+  </main>
+
+  {% endblock %}

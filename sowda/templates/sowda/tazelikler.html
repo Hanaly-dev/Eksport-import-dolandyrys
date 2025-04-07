@@ -1,0 +1,211 @@
+{% extends 'sowda/index.html' %}
+{% load static %}
+{% block tazelikler %}
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background" data-aos="fade" style="background-image: url(assets/img/page-title-bg.webp);">
+      <div class="container position-relative">
+        <h1>Täzelikler we habarlar</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="{% url 'index' %}">Esasy</a></li>
+            <li class="current">Täzelikler</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+
+    <!-- Blog Posts 2 Section -->
+    <section id="blog-posts-2" class="blog-posts-2 section">
+
+      <div class="container">
+        <div class="row gy-4">
+
+          <div class="col-lg-4">
+            <article class="position-relative h-100">
+
+              <div class="post-img position-relative overflow-hidden">
+                <img src="{% static 'assets/img/tehnika.jpg' %}" class="img-fluid" alt="">
+              </div>
+
+              <div class="meta d-flex align-items-end">
+                <span class="post-date"><span>12</span>Dekabr</span>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-person"></i> <span class="ps-2">Admin</span>
+                </div>
+                <span class="px-3 text-black-50">/</span>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-folder2"></i> <span class="ps-2">Önümçilik</span>
+                </div>
+              </div>
+
+              <div class="post-content d-flex flex-column">
+
+                <h3 class="post-title">Oba hojalygynda ulanylýan täze usullar</h3>
+                <a href="" class="readmore stretched-link"><span>Doly okamak</span><i class="bi bi-arrow-right"></i></a>
+
+              </div>
+
+            </article>
+          </div><!-- End post list item -->
+
+          <div class="col-lg-4">
+            <article class="position-relative h-100">
+
+              <div class="post-img position-relative overflow-hidden">
+                <img src="{% static 'assets/img/eksport2.jpg' %}" class="img-fluid" alt="">
+              </div>
+
+              <div class="meta d-flex align-items-end">
+                <span class="post-date"><span>19</span>Mart</span>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-person"></i> <span class="ps-2">Azat</span>
+                </div>
+                <span class="px-3 text-black-50">/</span>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-folder2"></i> <span class="ps-2">Ekonomika</span>
+                </div>
+              </div>
+
+              <div class="post-content d-flex flex-column">
+                <h3 class="post-title">Önümçilikde eksporty ösdürmegiň tapgyrlary</h3>
+                <a href="blog-details.html" class="readmore stretched-link"><span>Doly okamak</span><i class="bi bi-arrow-right"></i></a>
+              </div>
+
+            </article>
+          </div><!-- End post list item -->
+
+          <div class="col-lg-4">
+            <article class="position-relative h-100">
+
+              <div class="post-img position-relative overflow-hidden">
+                <img src="{% static 'assets/img/pomidor2.jpg' %}" class="img-fluid" alt="">
+              </div>
+              <div class="meta d-flex align-items-end">
+                <span class="post-date"><span>24</span>Iýun</span>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-person"></i> <span class="ps-2">Admin</span>
+                </div>
+                <span class="px-3 text-black-50">/</span>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-folder2"></i> <span class="ps-2">Oba hojalyk</span>
+                </div>
+              </div>
+
+              <div class="post-content d-flex flex-column">
+                <h3 class="post-title">Pomidor ösdürip ýetişdirmegiň täze usullary.</h3>
+                <a href="blog-details.html" class="readmore stretched-link"><span>Doly okamak</span><i class="bi bi-arrow-right"></i></a>
+              </div>
+
+            </article>
+          </div><!-- End post list item -->
+
+          <div class="col-lg-4">
+            <article class="position-relative h-100">
+
+              <div class="post-img position-relative overflow-hidden">
+                <img src="{% static 'assets/img/teplissa6.jpg' %}" class="img-fluid" alt="">
+              </div>
+              <div class="meta d-flex align-items-end">
+                <span class="post-date"><span>05</span>Awgust</span>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-person"></i> <span class="ps-2">Eziz</span>
+                </div>
+                <span class="px-3 text-black-50">/</span>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-folder2"></i> <span class="ps-2">Önümçilik</span>
+                </div>
+              </div>
+
+              <div class="post-content d-flex flex-column">
+                <h3 class="post-title">Ýyladyşhanalary döwrebaplaşdyrmak.</h3>
+                <a href="blog-details.html" class="readmore stretched-link"><span>Doly okamak</span><i class="bi bi-arrow-right"></i></a>
+              </div>
+
+            </article>
+          </div><!-- End post list item -->
+
+          <div class="col-lg-4">
+            <article class="position-relative h-100">
+
+              <div class="post-img position-relative overflow-hidden">
+                <img src="{% static 'assets/img/pomidorlar.jpg' %}" class="img-fluid" alt="">
+              </div>
+
+              <div class="meta d-flex align-items-end">
+                <span class="post-date"><span>17</span>Sentýabr</span>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-person"></i> <span class="ps-2">Azat</span>
+                </div>
+                <span class="px-3 text-black-50">/</span>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-folder2"></i> <span class="ps-2">Gök önümler</span>
+                </div>
+              </div>
+
+              <div class="post-content d-flex flex-column">
+
+                <h3 class="post-title">Pomidoryň täze görnüşlerini ýetişdirmek we ideg işleri</h3>
+                <a href="blog-details.html" class="readmore stretched-link"><span>Doly okamak</span><i class="bi bi-arrow-right"></i></a>
+
+              </div>
+
+            </article>
+          </div><!-- End post list item -->
+
+          <div class="col-lg-4">
+            <article class="position-relative h-100">
+
+              <div class="post-img position-relative overflow-hidden">
+                <img src="{% static 'assets/img/awto2.jpg' %}" class="img-fluid" alt="">
+              </div>
+
+              <div class="meta d-flex align-items-end">
+                <span class="post-date"><span>07</span>Dekabr</span>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-person"></i> <span class="ps-2">Admin</span>
+                </div>
+                <span class="px-3 text-black-50">/</span>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-folder2"></i> <span class="ps-2">Tehnologiýa</span>
+                </div>
+              </div>
+
+              <div class="post-content d-flex flex-column">
+
+                <h3 class="post-title">Oba hojalygynda önümçiligi awtomatlaşdyrmak</h3>
+                <a href="" class="readmore stretched-link"><span>Doly okamak</span><i class="bi bi-arrow-right"></i></a>
+
+              </div>
+
+            </article>
+          </div><!-- End post list item -->
+
+        </div>
+      </div>
+
+    </section><!-- /Blog Posts 2 Section -->
+
+    <!-- Blog Pagination Section -->
+    <section id="blog-pagination" class="blog-pagination section">
+
+      <div class="container">
+        <div class="d-flex justify-content-center">
+          <ul>
+            <li><a href="#"><i class="bi bi-chevron-left"></i></a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#" class="active">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li>...</li>
+            <li><a href="#">10</a></li>
+            <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
+          </ul>
+        </div>
+      </div>
+
+    </section><!-- /Blog Pagination Section -->
+
+{% endblock %}

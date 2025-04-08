@@ -8,3 +8,8 @@ admin.site.register(ImportHasabat)
 admin.site.register(Alyjy)
 admin.site.register(Sargyt)
 admin.site.register(Kategoriya)
+
+
+admin.site.site_header = 'Dolandyryş paneli'
+admin.site.site_title = 'Dolandyryş paneli'
+admin.site.index_title = 'Dolandyryş paneli'

@@ -1,9 +1,18 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 
+class Kategoriya(models.Model):
+    ady = models.CharField(max_length=100)
+    
+    class Meta:
+        verbose_name_plural = "Kategoriyalar"
+    def __str__(self):
+        return self.ady
 class Onum(models.Model):
     ady = models.CharField(max_length=100)
+    kategoriya=models.ForeignKey(Kategoriya, on_delete=models.CASCADE)
     baha = models.DecimalField(max_digits=10, decimal_places=2)
+    suraty = models.ImageField(upload_to='media/images/', blank=True, null=True)
 
     def __str__(self):
         return self.ady
@@ -11,11 +20,14 @@ class Onum(models.Model):
     class Meta:
         verbose_name_plural = "Onumler"
 
-class Partner(models.Model):
+class Alyjy(models.Model):
     ady = models.CharField(max_length=100)
     yurt = models.CharField(max_length=100)
     email = models.EmailField(blank=True, null=True)
     telefon = models.CharField(max_length=20, blank=True, null=True)
+    
+    class Meta:
+        verbose_name_plural = "Alyjylar"
 
     def __str__(self):
         return self.ady
@@ -23,7 +35,6 @@ class Partner(models.Model):
 class Ammar(models.Model):
     onum = models.OneToOneField(Onum, on_delete=models.CASCADE)
     mukdary = models.PositiveIntegerField()
-    yerlesyan_yeri = models.CharField(max_length=100)
 
     def __str__(self):
         return f"{self.onum.ady} - {self.mukdary} kg"
@@ -34,23 +45,38 @@ class Ammar(models.Model):
 class ImportHasabat(models.Model):
     onum = models.ForeignKey(Onum, on_delete=models.CASCADE)
     mukdary = models.PositiveIntegerField()
-    ýurt = models.CharField(max_length=100)
+    baha = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     senesi = models.DateField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name_plural = "Import Hasabatlar"
 
     def save(self, *args, **kwargs):
-        ammar, created = Ammar.objects.get_or_create(onum=self.onum, defaults={"mukdary": 0, "yerlesyan_yeri": "Belli däl"})
+        ammar, created = Ammar.objects.get_or_create(
+            onum=self.onum,
+            defaults={"mukdary": 0, "yerlesyan_yeri": "Belli däl"}
+        )
         ammar.mukdary += self.mukdary
         ammar.save()
         super().save(*args, **kwargs)
 
+    def __str__(self):
+        return f"Import: {self.onum.ady} - {self.mukdary} kg"
+
 class EksportSargyt(models.Model):
     onum = models.ForeignKey(Onum, on_delete=models.CASCADE)
     mukdary = models.PositiveIntegerField()
-    partner = models.ForeignKey(Partner, on_delete=models.CASCADE)
+    partner = models.ForeignKey(Alyjy, on_delete=models.CASCADE)
     senesi = models.DateField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name_plural = "Eksport Sargytlar"
+        
+    def __str__(self):
+        return f"Eksport: {self.onum.ady} - {self.mukdary} kg"   
 
     def save(self, *args, **kwargs):
-        MIN_LOCAL_STOCK = 1000  # kg
+        MIN_LOCAL_STOCK = 100  # kg
 
         try:
             ammar = Ammar.objects.get(onum=self.onum)

@@ -1,0 +1,135 @@
+{% extends "sowda/index.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block import %}
+<div class="container mt-4">
+    <h2 class="mb-4">Import Hasabatlary</h2>
+
+    <div class="card shadow-sm mb-5">
+        <div class="card-header bg-success text-white">
+            Täze Import Giriz
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Önüm</label>
+                        {{ form.onum|add_class:"form-select" }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Mukdary (kg)</label>
+                        {{ form.mukdary|add_class:"form-control" }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Bahasy (TMT)</label>
+                        {{ form.baha|add_class:"form-control" }}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Import giriz</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="alert alert-info d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <strong>Jemi Import Mukdary:</strong> {{ jemi_mukdar }} kg
+        </div>
+        <div>
+            <strong>Jemi Import Bahasy:</strong> {{ jemi_baha }} TMT
+        </div>
+    </div>
+
+
+    <h4 class="mb-3">Import Edilen Önümler</h4>
+<div class="container">
+    {% if importlar %}
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Önüm</th>
+                <th>Mukdary</th>
+                <th>Bahasy</th>
+                <th>Senesi</th>
+                <th>Aksiyonlar</th> <!-- Yeni kolon ekledik -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for import in importlar %}
+            <tr>
+                <td>{{ import.onum.ady }}</td>
+                <td>{{ import.mukdary }} kg</td>
+                <td>{{ import.baha }} TMT</td>
+                <td>{{ import.senesi }}</td>
+                <td>
+                    <a href="" class="btn btn-sm btn-info" title="Doly görmek">
+                        <i class="bi bi-eye"></i>
+                    </a>
+                    <a href="" class="btn btn-sm btn-warning" title="Üýtgetmek">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                    <a href="" class="btn btn-sm btn-danger" title="Aýyrmak" onclick="return confirm('Aýyrmak isleýärsiňizmi?')">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-warning">Import edilen önüm ýok.</div>
+    {% endif %}
+</div>
+
+
+</div>
+
+<style>
+    .card {
+        border-radius: 15px;
+        transition: 0.3s ease-in-out;
+    }
+
+    .card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 15px rgba(0,0,0,0.15);
+    }
+
+    .btn-primary,
+    .btn-success,
+    .btn-danger {
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+
+    .form-label {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .alert-info {
+        background-color: #e3f2fd;
+        color: #0c5460;
+        border-color: #bee5eb;
+    }
+
+    .alert-warning {
+        background-color: #fff3cd;
+        color: #856404;
+        border-color: #ffeeba;
+    }
+
+    .navbar {
+        background-color: #007bff;
+    }
+
+    .navbar .nav-link,
+    .navbar-brand {
+        color: white !important;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
+

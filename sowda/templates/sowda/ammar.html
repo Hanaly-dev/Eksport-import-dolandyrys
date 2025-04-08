@@ -1,5 +1,61 @@
 {% extends 'sowda/index.html' %}
 {% load static %}
-{% block ammar %}
 
+{% block ammar %}
+<div class="container my-5">
+    <h2 class="text-center mb-4">Ammardaky Önümler</h2>
+<div class="container my-5">
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Önüm</th>
+                <th>Mukdary</th>
+                <th>Eksporta taýýar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ammar in object_list %}
+                <tr class="{% if ammar.mukdary >= 1000 %}table-success{% else %}table-secondary{% endif %}">
+                    <td>{{ ammar.onum.ady }}</td>
+                    <td>{{ ammar.mukdary }} kg</td>
+                    <td>
+                        {% if ammar.mukdary >= 1000 %}
+                            <span class="badge bg-success">Hawa</span>
+                        {% else %}
+                            <span class="badge bg-danger">Ýok</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3" class="text-center">Ammarda hiç hili önüm ýok.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</div>
+
+<style>
+    .card {
+        border-radius: 15px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h5.card-title {
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    .card-text {
+        font-size: 0.95rem;
+        color: #34495e;
+    }
+</style>
 {% endblock %}

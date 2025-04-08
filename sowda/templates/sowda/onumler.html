@@ -1,5 +1,74 @@
 {% extends 'sowda/index.html' %}
 {% load static %}
-{% block onumler %}
 
+{% block onumler %}
+<div class="container my-5">
+    <h2 class="text-center mb-4">Önümler Sanawy</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        {% for onum in object_list %}
+        <div class="col">
+            <div class="card shadow-sm h-100 border-0" style="max-width: 250px; min-width: 220px;">
+                {% if onum.suraty %}
+                <img src="{{ onum.suraty.url }}" class="card-img-top img-fluid" alt="{{ onum.ady }}">
+                {% else %}
+                <img src="{% static 'default-product.png' %}" class="card-img-top img-fluid" alt="Default Surat">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ onum.ady }}</h5>
+                    <p class="card-text mb-2">
+                        <strong>Kategoriýasy:</strong> {{ onum.kategoriya.ady }}<br>
+                        <strong>Baha:</strong> {{ onum.baha }} TMT
+                    </p>
+                    <a href="#" class="btn btn-outline-success btn-sm rounded-pill">Doly görmek</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-warning text-center">Hiç hili önüm ýok.</div>
+        </div>
+        {% endfor %}
+    </div>
+    
+</div>
+
+<style>
+    .card {
+        border-radius: 16px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-img-top {
+        height: 220px;
+        object-fit: cover;
+        border-bottom: 1px solid #eee;
+    }
+
+    .card-title {
+        font-weight: 700;
+        color: #2c3e50;
+        font-size: 1.2rem;
+    }
+
+    .card-text {
+        color: #34495e;
+        font-size: 0.95rem;
+    }
+
+    .btn-outline-success {
+        font-weight: 500;
+        transition: 0.2s;
+    }
+
+    .btn-outline-success:hover {
+        background-color: #198754;
+        color: white;
+    }
+</style>
 {% endblock %}

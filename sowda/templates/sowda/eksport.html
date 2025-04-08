@@ -1,0 +1,120 @@
+{% extends "sowda/index.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block eksport %}
+
+<div class="container my-5">
+    <h2 class="text-center mb-4">Eksport Edilen Önümler</h2>
+
+    <div class="card mb-5 shadow-sm border-primary">
+        <div class="card-header bg-success text-white">
+            Täze Eksport Sargyt Döret
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Önüm</label>
+                        {{ form.onum|add_class:"form-select" }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Mukdary (kg)</label>
+                        {{ form.mukdary|add_class:"form-control" }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Alyjy</label>
+                        {{ form.partner|add_class:"form-select" }}
+                    </div>
+                </div>
+                <div class="mt-4 text-end">
+                    <button type="submit" class="btn btn-success">Ugrat</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% if object_list %}
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Eksport hasabatlary</h2>
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Önüm</th>
+                    <th>Mukdary</th>
+                    <th>Alyjy / Ýurt</th>
+                    <th>Senesi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for eksport in object_list %}
+                    <tr>
+                        <td>{{ eksport.onum.ady }}</td>
+                        <td>{{ eksport.mukdary }} kg</td>
+                        <td>{{ eksport.partner.ady }} ({{ eksport.partner.yurt }})</td>
+                        <td>{{ eksport.senesi|date:"Y-m-d" }}</td>
+                        <td>
+                            <a href="" class="btn btn-sm btn-info" title="Doly görmek">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="" class="btn btn-sm btn-warning" title="Üýtgetmek">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <a href="" class="btn btn-sm btn-danger" title="Aýyrmak" onclick="return confirm('Aýyrmak isleýärsiňizmi?')">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <div class="card shadow-lg border-success">
+                        <div class="card-body">
+                            <h5 class="card-title text-center text-success">Jemi eksport edilen mukdary</h5>
+                            <div class="d-flex justify-content-between">
+                                <p class="card-text">
+                                    <strong class="h4">Sargyt:{{ object_list|length }} </strong>
+                                </p>
+                                <p class="card-text">
+                                    <strong class="h4">Jemi: {{ total_kg }} kg</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <p>Maglumat ýok</p>
+    <div class="alert alert-warning text-center">Häzirlikçe hiç hili eksport edilen önüm ýok.</div>
+{% endif %}
+
+<style>
+    .card {
+        border-radius: 15px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h5.card-title {
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    .card-text {
+        font-size: 0.95rem;
+        color: #34495e;
+    }
+</style>
+
+{% endblock %}

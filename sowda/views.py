@@ -10,6 +10,8 @@ from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
+from django.db.models import Sum
+
 
 class OnumListView(ListView):
     model = Onum
@@ -150,3 +152,34 @@ def registerView(request):
         return redirect('login')  
 
     return render(request, 'sowda/login.html')
+
+def dashboard_view(request):
+    years = ["2021", "2022", "2023", "2024"]
+    eksport_data = []
+    import_data = []
+
+    for y in years:
+        eksport_total = EksportSargyt.objects.filter(senesi__year=y).aggregate(total=Sum('mukdary'))['total'] or 0
+        import_total = ImportHasabat.objects.filter(senesi__year=y).aggregate(total=Sum('mukdary'))['total'] or 0
+        eksport_data.append(eksport_total)
+        import_data.append(import_total)
+
+    monthly_data = []
+    monthly_labels = ['Ýan', 'Few', 'Mar', 'Apr', 'Maý', 'Iýn', 'Iýl', 'Awg', 'Sen', 'Okt', 'Noý', 'Dek']
+    for m in range(1, 13):
+        total = EksportSargyt.objects.filter(senesi__year=2024, senesi__month=m).aggregate(total=Sum('mukdary'))['total'] or 0
+        monthly_data.append(total)
+
+    country_qs = EksportSargyt.objects.values('partner').annotate(total=Sum('mukdary')).order_by('-total')[:5]
+    top_countries_labels = [c['partner'] for c in country_qs]
+    top_countries_data = [c['total'] for c in country_qs]
+
+    return render(request, 'sowda/dashboard.html', {
+        'years': years,
+        'eksport_data': eksport_data,
+        'import_data': import_data,
+        'monthly_labels': monthly_labels,
+        'monthly_data': monthly_data,
+        'top_countries_labels': top_countries_labels,
+        'top_countries_data': top_countries_data
+    })

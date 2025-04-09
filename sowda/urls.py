@@ -15,6 +15,7 @@ urlpatterns = [
     path('login/', loginView, name='login'),
     path('logout/', logoutView, name='logout'),
     path('register/', registerView, name='register'),
+    path('dashboard/', dashboard_view, name='dashboard'),
     # path('import/<int:id>/', import_view, name='import_view'),
     # path('import/<int:id>/edit/', import_edit, name='import_edit'),
     # path('import/<int:id>/delete/', import_delete, name='import_delete'),
